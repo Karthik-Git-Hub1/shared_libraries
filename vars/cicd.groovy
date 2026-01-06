@@ -6,15 +6,15 @@ def newBuild() {
     sh 'mvn clean package'
 }
 
-def newDeploy(String shared_libraries, String 16.112.67.97, String testapp) {
+def newDeploy(String workspaceName, String serverIp, String appName) {
     sh """
         scp /var/lib/jenkins/workspace/${workspaceName}/webapp/target/webapp.war \
-        ubuntu@${16.112.67.97}:/var/lib/tomcat10/webapps/${testapp}.war
+        ubuntu@${serverIp}:/var/lib/tomcat10/webapps/${appName}.war
     """
 }
 
 def runSelenium(String workspaceName) {
-    sh "java -jar /var/lib/jenkins/workspace/${shared_libraries}/testing.jar"
+    sh "java -jar /var/lib/jenkins/workspace/${workspaceName}/testing.jar"
 }
 
 return this
