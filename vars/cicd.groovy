@@ -11,8 +11,9 @@ def deployTomcat(jobname,ip,context)
 {
    sh '''
 scp webapp/target/webapp.war \
-ubuntu@${}:/var/lib/tomcat10/webapps/testapp.war
-'''
+ubuntu@${}:home/ubuntu/testapp.war
+ssh ubuntu@${} "sudo mv /home/ubuntu/testapp.war /var/lib/tomcat10/webapps/testapp.war"
+  '''
 
 }
 def executeSelenium(jobname)
