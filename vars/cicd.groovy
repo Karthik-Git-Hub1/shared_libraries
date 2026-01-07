@@ -1,20 +1,20 @@
-def newDownload() {
-    git 'https://github.com/IntelliqDevops/maven.git'
+def gitDownload(repo) {
+    git "https://github.com/IntelliqDevops/${repo}.git"
 }
 
-def newBuild() {
+def buildArtifact() {
     sh 'mvn clean package'
 }
 
-def newDeploy(String workspaceName, String serverIp, String appName) {
+def newDeploy(jobname, ip, context) {
     sh """
-        scp /var/lib/jenkins/workspace/${workspaceName}/webapp/target/webapp.war \
-        ubuntu@${serverIp}:/var/lib/tomcat10/webapps/${appName}.war
+        scp /var/lib/jenkins/workspace/${jobname}/webapp/target/webapp.war \
+        ubuntu@${ip}:/var/lib/tomcat10/webapps/${context}.war
     """
 }
 
-def runSelenium(String workspaceName) {
-    sh "java -jar /var/lib/jenkins/workspace/${workspaceName}/testing.jar"
+def runSelenium(jobname) {
+    sh "java -jar /var/lib/jenkins/workspace/${jobname}/testing.jar"
 }
 
-return this
+
