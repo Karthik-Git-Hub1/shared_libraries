@@ -10,8 +10,8 @@ def buildArtifact()
 def deployTomcat(jobname,ip,context)
 {
    sh '''
-scp webapp/target/webapp.war ubuntu@16.112.67.97:/home/ubuntu/testapp.war
-ssh ubuntu@16.112.67.97 "sudo mv /home/ubuntu/testapp.war /var/lib/tomcat10/webapps/testapp.war"
+scp webapp/target/webapp.war ubuntu@${ip}:/home/ubuntu/testapp.war
+ssh ubuntu@${ip} "sudo mv /home/ubuntu/testapp.war /var/lib/tomcat10/webapps/testapp.war"
 '''
 
 
