@@ -11,7 +11,7 @@ def deployTomcat(jobname,ip,context)
 {
    sh '''
 scp webapp/target/webapp.war \
-ubuntu@116.112.67.97:/var/lib/tomcat10/webapps/testapp.war
+ubuntu@${}:/var/lib/tomcat10/webapps/testapp.war
 '''
 
 }
