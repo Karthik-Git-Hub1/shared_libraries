@@ -9,7 +9,11 @@ def buildArtifact()
 }
 def deployTomcat(jobname,ip,context)
 {
-   sh "webapp/target/webapp.war/${jobname}/webapp/target/webapp.war ubuntu@${ip}:/var/lib/tomcat10/webapps/${context}.war"
+   sh '''
+scp webapp/target/webapp.war \
+ubuntu@${ip}:/var/lib/tomcat10/webapps/testapp.war
+'''
+
 }
 def executeSelenium(jobname)
 {
